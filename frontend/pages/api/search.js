@@ -1,5 +1,27 @@
-// Utils
-import getSearchResults from '../../src/utils/getSearchResults';
+import groq from 'groq';
+import { clientGROQ } from '../../groq/client';
+
+const getSearchResults = async ({ query, language }) => {
+  const currentQuery = String(query || '');
+
+  const groqQuery = groq`
+    {
+      "all": *[
+        _type in ["Activity", "Article", "Page", "Place", "Region", "Service", "Provider", "ThingsToDoPage", "DayTrip"]
+        && expired != true
+      ] | score(boost(_type == 'Place', 2)) [0...10] { _id },
+    }
+  `;
+
+  const results = await clientGROQ.fetch(groqQuery, {
+    query: currentQuery,
+    categoryId: '',
+    language,
+    fallback: 'en',
+  });
+
+  return { results, currentQuery };
+};
 
 export default async function handler(req, res) {
   // Disallow non-GET methods
