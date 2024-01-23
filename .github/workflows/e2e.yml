@@ -1,0 +1,45 @@
+# name: Tests E2E
+# on:
+#   deployment_status:
+#   # Allows you to run this workflow manually from the Actions tab
+#   workflow_dispatch:
+# jobs:
+#   # wait for vercel to build preview deploy
+#   wait_for_vercel:
+#     name: Get Vercel preview URL
+#     runs-on: ubuntu-latest
+#     if: github.event.deployment_status.state == 'success'
+#     outputs:
+#       preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
+#     steps:
+#       - name: Wait for Vercel preview deployment to be ready
+#         uses: patrickedqvist/wait-for-vercel-preview@v1.2.0
+#         id: waitForVercelPreviewDeployment
+#         with:
+#           token: ${{ secrets.GITHUB_TOKEN }}
+#           max_timeout: 120
+#   test_e2e_playwright:
+#     name: Playwright
+#     needs: wait_for_vercel
+#     timeout-minutes: 60
+#     runs-on: ubuntu-latest
+#     if: github.event.deployment_status.state == 'success'
+#     steps:
+#       - name: Check out source code
+#         uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 1
+#       - name: Set up node
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: 14.17.5
+#       - name: Install dependencies
+#         run: |
+#           yarn
+#       - name: Output Preview URL
+#         run: echo ${{ needs.wait_for_vercel.outputs.preview_url }}
+#       - name: Run tests
+#         run: yarn test:e2e:ci
+#         env:
+#           VERCEL_URL: ${{ needs.wait_for_vercel.outputs.preview_url }}
+#           VERCEL_ENV: preview

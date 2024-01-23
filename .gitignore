@@ -1,0 +1,51 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# production
+/frontend/build
+
+# postcss
+/frontend/styles/main.css
+
+# dependencies (stating 'node_modules' excludes both 'root' and 'frontend' ones)
+node_modules
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# environments
+.env
+.env*
+!.env.example
+
+# testing
+/frontend/coverage
+jestOutput.json
+
+# next.js
+/frontend/.next/
+/frontend/out/
+
+# vercel
+/frontend/.vercel
+
+#robots and sitemap
+/frontend/public/robots.txt
+/frontend/public/*.xml
+
+
+
+# misc
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+*.pem
+Thumbs.db
+/temp
+
+# Local Netlify folder
+.netlify

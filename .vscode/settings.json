@@ -1,0 +1,49 @@
+{
+  "[css]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.workingDirectories": ["./frontend"],
+  "extensions.ignoreRecommendations": true,
+  "files.autoSave": "off",
+  "javascript.format.semicolons": "insert",
+  "sass.format.deleteEmptyRows": false,
+  "sass.format.enabled": false,
+  "tailwindCSS.validate": false,
+  "typescript.format.semicolons": "insert",
+  "workbench.colorCustomizations": {
+    "titleBar.activeForeground": "#003f65",
+    "titleBar.inactiveForeground": "#003f65",
+    "titleBar.activeBackground": "#16d9b5",
+    "titleBar.inactiveBackground": "#16d9b5",
+    "activityBar.activeBackground": "#003f65",
+    "activityBar.activeBorder": "#4b5ab4",
+    "activityBar.background": "#003f65",
+    "activityBar.foreground": "#ffffff",
+    "activityBar.inactiveForeground": "#ffffff",
+    "activityBarBadge.background": "#4b5ab4",
+    "activityBarBadge.foreground": "#0bbbf2",
+    "statusBar.background": "#060c05",
+    "statusBar.foreground": "#ffffff",
+    "statusBarItem.hoverBackground": "#003f65",
+    "sash.hoverBorder": "#003f65",
+    "statusBarItem.remoteBackground": "#060c05",
+    "statusBarItem.remoteForeground": "#0bbbf2"
+  },
+  "peacock.color": "#060c05",
+  "cSpell.words": [
+    "activityx",
+    "bottombanner",
+    "Fastfood",
+    "Geopoints",
+    "getinspired",
+    "GROQ",
+    "ixineraries",
+    "ixinerary",
+    "servicex",
+    "siteimprove",
+    "topbanner"
+  ]
+}

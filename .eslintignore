@@ -1,0 +1,13 @@
+.cache
+.vscode
+build
+dist
+docs
+node_modules
+public
+
+# Ignore these files are the 'root' level, to avoid 'babel' warnings
+playwright.config.js
+/.eslintrc.js
+/config.js
+/tests/e2e/

@@ -1,0 +1,80 @@
+{
+  "name": "fn-travel-planner-repro",
+  "private": true,
+  "version": "4.13.2",
+  "description": "Travel Planner repro repo",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "resetup": "rm -rf node_modules/ && cd frontend/ && rm -rf node_modules/ && rm -rf .next/ && cd .. && yarn setup",
+    "resetup:upgrade": "rm -rf node_modules/ && rm yarn.lock && cd frontend/ && rm -rf node_modules/ && rm yarn.lock && rm -rf .next/ && cd .. && yarn setup",
+    "setup": "yarn && cd frontend/ && yarn && cd ..",
+    "prettier": "prettier --write '**/*.{js,css,scss,html,json}'",
+    "release": "npx bump --commit '🚀 Release v' --tag --push package.json package.json frontend/package.json",
+    "test": "jest",
+    "test:ci": "jest --ci",
+    "test:outputToFile": "jest --json --outputFile=jestOutput.json && prettier --write './jestOutput.json'",
+    "test:watch": "jest --watch --verbose",
+    "test:e2e:local:generate": "VERCEL_URL=http://localhost:4000 npx playwright codegen localhost:4000 --viewport-size=1920,1440",
+    "test:e2e:local:open": "VERCEL_URL=http://localhost:4000 npx playwright test --headed",
+    "test:e2e:local:run": "VERCEL_URL=http://localhost:4000 npx playwright test",
+    "test:e2e:ci": "npx playwright test"
+  },
+  "dependencies": {
+    "date-fns": "^2.23.0",
+    "react-dfp": "^0.21.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/eslint-parser": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "@jsdevtools/version-bump-prompt": "^6.1.0",
+    "@playwright/test": "^1.19.2",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "4",
+    "jest": "^27.0.6",
+    "playwright": "^1.19.2",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "TZ=Europe/Berlin yarn test && sh lib/huskyPreCommit.sh"
+    }
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/frontend/node_modules",
+      "<rootDir>/frontend/\\.next",
+      "<rootDir>/frontend/public",
+      "<rootDir>/tests/e2e"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

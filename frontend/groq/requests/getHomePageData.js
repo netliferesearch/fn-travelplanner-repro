@@ -1,0 +1,199 @@
+import groq from 'groq';
+import { clientGROQ } from '../client';
+
+// Get one entry by language, slug and type
+export const getHomePageData = async () => {
+  const query = groq`*[_type == "HomePage"][0]{
+    _id,
+    locTitle,
+    locShortDescription,
+    featureImage{
+      locAltText,
+      locShortDescription,
+      image{
+        public_id,
+        resource_type,
+        url,
+        secure_url
+      }
+    },
+    gettingHere{
+      locTitle,
+      locShortDescription,
+      locMapCallout,
+      articles[]->{
+        _type,
+        _id,
+        title,
+        locTitle,
+        slug,
+        locSlug,
+      },
+      pages[]->{
+        _type,
+        _id,
+        title,
+        locTitle,
+        slug,
+        locSlug,
+      }
+    },
+    regionsOverview{
+      locTitle,
+      locShortDescription,
+      locRegionsCTA,
+    },
+    highlightedArticles{
+      locTitle,
+      locDescription,
+      relevantArticles[]->{
+        title,
+        locTitle,
+        slug,
+        locSlug,
+        locShortDescription,
+        cloudinaryImages[0..0]{
+          altText,
+          locDescription,
+          mainImage,
+          image{width, height, public_id, url},
+        },
+        images[0..0]{altText, mainImage, imageRef{cloudinaryId}},
+        coverImage{image{public_id}, locDescription},
+      },
+      locHighlightedArticles{
+        no[]->{
+          title,
+          locTitle,
+          slug,
+          locSlug,
+          locShortDescription,
+          cloudinaryImages[0..0]{
+            altText,
+            locDescription,
+            mainImage,
+            image{width, height, public_id, url},
+          },
+          images[0..0]{altText, mainImage, imageRef{cloudinaryId}},
+          coverImage{image{public_id}, locDescription},
+        },
+        en[]->{
+          title,
+          locTitle,
+          slug,
+          locSlug,
+          locShortDescription,
+          cloudinaryImages[0..0]{
+            altText,
+            locDescription,
+            mainImage,
+            image{width, height, public_id, url},
+          },
+          images[0..0]{altText, mainImage, imageRef{cloudinaryId}},
+          coverImage{image{public_id}, locDescription},
+        },
+        de[]->{
+          title,
+          locTitle,
+          slug,
+          locSlug,
+          locShortDescription,
+          cloudinaryImages[0..0]{
+            altText,
+            locDescription,
+            mainImage,
+            image{width, height, public_id, url},
+          },
+          images[0..0]{altText, mainImage, imageRef{cloudinaryId}},
+          coverImage{image{public_id}, locDescription},
+        },
+      }
+    },
+    highlightedCampaigns{
+      locCampaigns{
+        no[0..0]{
+          _type,
+          campaign->{
+            _id,
+            isActive,
+            locTitle,
+            locSlug,
+            locShortDescription,
+            campaignColor->{color{hex}},
+            coverImage,
+            campaignRegion->{
+              region->{_id},
+              locTitle,
+              locSlug,
+              locShortDescription,
+              campaignRegionLogo,
+              campaignRegionColor,
+              coverImage,
+            }
+          },
+          readMoreText{
+            no,
+            en,
+            de,
+          },
+          status,
+        },
+        en[0..0]{
+          _type,
+          campaign->{
+            _id,
+            isActive,
+            locTitle,
+            locSlug,
+            locShortDescription,
+            campaignColor->{color{hex}},
+            coverImage,
+            campaignRegion->{
+              region->{_id},
+              locTitle,
+              locSlug,
+              locShortDescription,
+              campaignRegionLogo,
+              campaignRegionColor,
+              coverImage,
+            }
+          },
+          readMoreText{
+            no,
+            en,
+            de,
+          },
+          status,
+        },
+        de[0..0]{
+          _type,
+          campaign->{
+            _id,
+            isActive,
+            locTitle,
+            locSlug,
+            locShortDescription,
+            campaignColor->{color{hex}},
+            coverImage,
+            campaignRegion->{
+              region->{_id},
+              locTitle,
+              locSlug,
+              locShortDescription,
+              campaignRegionLogo,
+              campaignRegionColor,
+              coverImage,
+            }
+          },
+          readMoreText{
+            no,
+            en,
+            de,
+          },
+          status,
+        },
+      }
+    }
+  }`;
+  return clientGROQ.fetch(query);
+};
