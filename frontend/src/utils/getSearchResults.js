@@ -18,7 +18,7 @@ const getSearchResults = async ({ query, page, language, paginationLimit }) => {
   const end = start + currentPagination;
 
   // Use English fallback on German
-  const fallback = language === 'de' ? 'en' : language;
+  const fallback = 'en';
 
   const searchCriteria = groq`
     (
