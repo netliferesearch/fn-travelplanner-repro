@@ -1,4 +1,4 @@
-import sanityClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 import NodeCache from 'node-cache';
 import { config } from '../config';
 
@@ -43,15 +43,12 @@ const proxyHandler = {
 };
 
 // GROQ client proxy that includes CDN and memory caching
-export const clientGROQ = new Proxy(
-  sanityClient({
-    ...clientOptions,
-    useCdn: Boolean(inProduction),
-  }),
-  proxyHandler,
-);
+export const clientGROQ = createClient({
+  ...clientOptions,
+  useCdn: Boolean(inProduction),
+});
 
-export const clientWithToken = sanityClient({
+export const clientWithToken = createClient({
   ...clientOptions,
   token: process.env.SANITY_STUDIO_API_TOKEN,
   useCdn: false,
@@ -59,7 +56,7 @@ export const clientWithToken = sanityClient({
 
 // Vanilla GROQ client without CDN or memory caching
 // * Use this if you depend on having fresh data
-export const _clientGROQ = sanityClient({
+export const _clientGROQ = createClient({
   ...clientOptions,
   useCdn: false,
 });
