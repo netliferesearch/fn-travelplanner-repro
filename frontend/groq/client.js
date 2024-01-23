@@ -43,13 +43,10 @@ const proxyHandler = {
 };
 
 // GROQ client proxy that includes CDN and memory caching
-export const clientGROQ = new Proxy(
-  createClient({
-    ...clientOptions,
-    useCdn: Boolean(inProduction),
-  }),
-  proxyHandler,
-);
+export const clientGROQ = createClient({
+  ...clientOptions,
+  useCdn: Boolean(inProduction),
+});
 
 export const clientWithToken = createClient({
   ...clientOptions,
