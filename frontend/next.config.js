@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 const adServiceUrls =
   '*.google.com *.google.no *.googleadservices.com adservice.google.de *.g.doubleclick.net *.googlesyndication.com static.sojern.com csi.gstatic.com api.hubapi.com forms.hubspot.com';
 
@@ -11,10 +9,6 @@ const snapSeaUrls = 'https://snapsea.fra1.digitaloceanspaces.com/ https://app.sn
 const apiServiceUrls = '*.mapbox.com';
 
 const videoUrls = 'www.youtube.com player.vimeo.com';
-// * Webpack 5 no longer polyfills Node.js core modules automatically which means
-//   if you use them in your code running in browsers or alike, you will have to
-//   install compatible modules from npm and include them yourself.
-// * See: https://webpack.js.org/configuration/resolve/#resolvefallback
 
 /* eslint-disable */
 module.exports = {
@@ -54,8 +48,6 @@ module.exports = {
     // Netlify
     URL: process.env.URL,
     DEPLOY_PRIME_URL: process.env.DEPLOY_PRIME_URL,
-    // GTM
-    googleTagManager: fs.readFileSync('./src/vendor/googleTagManager.js').toString(),
     // Next.js
     NEXT_IMAGE_ALLOWED_DOMAINS: 'localhost,cdn.sanity.io,res.cloudinary.com,media.newmindmedia.com',
   },

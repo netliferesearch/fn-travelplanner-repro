@@ -2,7 +2,6 @@ import natural from 'natural';
 import * as stopword from 'stopword';
 
 // Utils
-import { apiErrorObj } from '../../src/utils/apiUtil';
 import getSearchResults from '../../src/utils/getSearchResults';
 
 const cacheExpires = 60 * 60 * 6; // Cache is stale after 6 hours
@@ -10,15 +9,7 @@ const cacheRevalidate = 60 * 60 * 24; // Use stale cache for 24 hours while reva
 
 export default async function handler(req, res) {
   // Disallow non-GET methods
-  if (req.method !== 'GET')
-    return res.status(405).json({
-      error: {
-        message: apiErrorObj(405, 'message'),
-        description: req.method
-          ? `${req.method} requests are not allowed`
-          : apiErrorObj(405, 'description'),
-      },
-    });
+  if (req.method !== 'GET') return res.status(405).send('GET method not supported');
 
   res.setHeader(
     'Cache-Control',
