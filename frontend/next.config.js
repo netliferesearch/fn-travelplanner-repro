@@ -1,5 +1,5 @@
 const adServiceUrls =
-  '*.google.com *.google.no *.googleadservices.com adservice.google.de *.g.doubleclick.net *.googlesyndication.com static.sojern.com csi.gstatic.com api.hubapi.com forms.hubspot.com';
+  '*.google.com *.google.no *.googleadservices.com adservice.google.de *.g.doubleclick.net *.googlesyndication.com *.sojern.com csi.gstatic.com api.hubapi.com forms.hubspot.com';
 
 const analyticsUrls =
   '*.analytics.google.com *.googletagmanager.com *.googleapis.com www.gstatic.com *.google-analytics.com connect.facebook.net *.googletagservices.com *.cookiebot.com *.skyra.no';
